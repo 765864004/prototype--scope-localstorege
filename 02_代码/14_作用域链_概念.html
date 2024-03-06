@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function f1(){
+
+            //var num = 10
+
+            function f2(){
+                console.log(num)
+            }
+
+            f2()
+
+            /* 
+                [[Scopes]]: Scopes[2]  ---代表作用域链
+                0: Closure (f1) {num: 10}   ---f2所在作用域f1函数
+                1: Global {window: Window, self: Window, document: document, name: '', location: Location, …}  //f1所在的作用域-全局作用域
+
+            */
+            console.dir(f2)
+        }
+
+        f1()
+
+        console.dir(f1)
+    </script>
+</body>
+</html>

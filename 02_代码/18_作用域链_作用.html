@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function a(){
+            var num = 10
+
+            function b(){
+                console.log(num)
+                console.dir(b)
+            }
+            b()
+            console.dir(a)
+        }
+        a()
+
+        /* 
+            分析作用域链产生的过程
+                1,js引擎加载html页面,同时进行全局预编译
+                    GO {a : function}
+
+                2,全局预编译完成之后,调用a函数,在调用a函数的这一刻,会为a函数产生一个a函数的AO对象,范围在a函数的作用域中
+                 此时内存中有两个作用域,一个是GO对象所在的全局作用域,一个a函数所在的局部作用域
+                    [scopes]  --- aAO {b:function,num:undefined} ->  {b:function,num:10}
+                              --- GO  {a:function}
+
+                3,a函数预编译完成之后,调用b函数,在调用b函数的这一刻,会为b函数产生一个b函数的AO对象,范围在b函数的作用域中
+                此时内存中有三个作用域,一个是GO对象所在的全局作用域,一个a函数所在的局部作用域,一个b函数所在的局部作用域
+                    [scopes]  --- bAO {}
+                              --- aAO {b:function,num:10}
+                              --- GO  {a:function}
+
+                4,b函数预编译完成之后,执行b函数
+                    执行到第14行的时候,打印num,此时b函数中并没有定义num,就会会根据作用域链找到它的上一层(aAO函数)
+                    aAO函数里面定义num,就直接拿过来使用,最终打印的就是10
+        */
+    </script>
+</body>
+</html>

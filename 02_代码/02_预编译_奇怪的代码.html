@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        console.log(a)
+
+        var a = 100
+
+        console.log(a)
+
+        function a(){
+            console.log(a)
+        }
+
+        a()
+        /* 
+            产生的原因
+                代码有歧义:定义的变量名和函数名冲突,导致运行报错
+                想要了解报错的本质,就需要知道js预编译的过程
+
+            js预编译
+                就是js在执行代码之前的预处理,目的是为了消除歧义,让代码能够从上到下执行(也称为预处理)
+        */
+    </script>
+</body>
+</html>

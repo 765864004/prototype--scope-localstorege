@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            活动对象(Active Object)
+                在函数被调用的时候,产生的一个对象,用来保存当前函数内部的执行环境
+            局部变量
+                在函数里面定义的变量
+            关系
+	            局部变量其实是作为活动对象(AO对象)的一个属性存在的
+        */
+       function f(){
+            var a = 10  //a其实是一个局部变量:在函数里面
+            console.log(a)
+       }
+
+       f()
+
+       /* 
+            因为函数调用完成之后就立即销毁了,只能通过断点调试的方式进入函数内部查看活动对象
+
+            将断点放在f()上面,进入函数内容,可以看到'本地',代表局部环境
+
+            同时可以看出,局部变量a其实是活动对象AO对象的一个属性
+       */
+    </script>
+</body>
+</html>

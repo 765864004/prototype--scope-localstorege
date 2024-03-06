@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        if(true){
+            var num1 = 10 //ES5的写法,其实不受块级作用域的影响
+            let num2 = 20 //ES6的写法,会受块级作用域的影响
+        }
+        console.log(num1)
+        //console.log(num2)//num2 is not defined  let定义的变量有块级作用域的限制
+
+        console.log(window)//只能看到num1,看不到num2,num2在块级作用域中
+    </script>
+</body>
+</html>

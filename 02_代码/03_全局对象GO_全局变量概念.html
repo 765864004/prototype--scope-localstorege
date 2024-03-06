@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /* 
+            全局环境
+                在浏览器中,所有的script标签其实都是在一个环境中,这个环境叫做全局环境
+
+            全局对象
+                js引擎会整合所有的script标签中的内容,产生一个全局变量,叫做window对象
+
+            全局变量
+                在全局环境下定义的变量,叫做全局变量
+            
+            关系
+                全局变量其实是作为全局对象的一个属性存在
+        */
+
+        var a = 10  //a其实是一个全局变量
+
+        console.log(window)//window是全局对象,通过打印可以看出a其实是window一个属性
+    </script>
+
+    <script>
+        console.log(a)
+    </script>
+</body>
+</html>

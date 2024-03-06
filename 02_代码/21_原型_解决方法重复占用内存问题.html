@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //明星类
+        function Star(name, age) {
+            this.name = name
+            this.age = age
+
+            /* this.sing = function(){
+                console.log('会唱歌')
+            } */
+        }
+
+        //不管什么类,都有一个prototype属性
+        console.dir(Star)
+        console.dir(Array)
+        console.dir(Date)
+        console.log(Star.prototype) //这就是原型
+        console.log(typeof Star.prototype) //object 对象类型,一般称为原型对象
+
+        //作用:就可以把公共的方法定义在原型中,将来创建对象的时候,就不会为对象的方法重新开辟空间
+        Star.prototype.sing = function () {
+            console.log('会唱歌')
+        }
+
+        //创建两个明星对象
+        var ldh = new Star('刘德华', 60)
+        console.log(ldh.name)
+        ldh.sing()
+
+        var zxy = new Star('张学友', 60)
+        console.log(zxy.name)
+        zxy.sing()
+
+
+        console.log(ldh.sing === zxy.sing) //true 说明是在同一个的地址,没有造成内存的浪费
+
+        /* 给js的Array类,扩展一个求数字类型数组内部元素的和方法 (sum方法  [1,2,3,4] => 10) */
+
+    </script>
+</body>
+
+</html>

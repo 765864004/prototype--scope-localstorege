@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function a(num){
+            console.log(i)
+
+            var i = 20
+
+            console.log(b)
+
+            function b(){
+                console.log('bbb')
+            }
+
+            b()
+        }
+
+        a(100)
+
+        /* 
+            流程
+                1,在函数被调用的那一刻,就会为当前函数生成一个AO对象
+                2,先查找局部变量和形参的声明,作为AO对象的属性名,值是undefined
+                3,使用实参的值替换形参的值
+                4,再查找局部函数的声明,作为AO对象的方法名,值是function
+                3,从上往下依次执行代码(声明的语句会被略过)
+
+            具体流程
+                先进行全局预编译--在调用函数的时候进行函数预编译
+
+                一,生成GO对象(页面一加载完成之后)
+
+                二,全局预编译
+                    1,查找全局变量,没有,只有一个函数
+                    2,查找全局函数,有,GO{a:function}
+
+                三,从上往下执行script中的代码
+                    声明的语句会被略过,直接执行第24行,调用a函数,调用的同时就会进行函数的预编译
+                
+                四,函数预编译
+                    1,在函数被调用的那一刻,就会为当前函数生成一个AO对象
+                    2,先查找局部变量和形参的声明,作为AO对象的属性名,值是undefined
+                        AO:{i:undefined,num:undefined}
+                    3,使用实参的值替换形参的值
+                        AO:{i:undefined,num:100}
+                    4,再查找局部函数的声明,作为AO对象的方法名,值是function
+                        AO:{i:undefined,num:100,b:function}
+                    3,从上往下依次执行代码(声明的语句会被略过)
+                        执行第11行代码,打印i,打印undefined
+                        执行第13行代码,给i赋值,AO:{i:20,num:100,b:function}
+                        执行第15行代码,打印b,打印的是function
+                        执行第21行代码,执行b函数,打印bbb
+
+                function a(test) {
+
+                    console.log(b)
+                    var b = 0
+                    console.log(b)
+
+                    function b() {
+                        console.log(222)
+                    }
+                }
+
+                a(1)
+
+
+        */
+    </script>
+</body>
+</html>

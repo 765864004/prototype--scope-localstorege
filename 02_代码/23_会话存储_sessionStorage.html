@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+
+    <button class="btn1">存储数据</button>
+    <button class="btn2">获取数据</button>
+    <button class="btn3">删除数据</button>
+    <button class="btn4">清空数据</button>
+    <button class="btn5">新建窗口测试数据</button>
+
+    <script>
+        //获取文本框对象
+        var input = document.querySelector('input')
+
+        //存储
+        document.querySelector('.btn1').addEventListener('click',function(){
+            sessionStorage.setItem('username',input.value)
+            sessionStorage.setItem('password',input.value)
+        })
+
+        //获取
+        document.querySelector('.btn2').addEventListener('click',function(){
+            console.log(sessionStorage.getItem('username'))
+            console.log(sessionStorage.getItem('password'))
+        })
+
+        //删除
+        document.querySelector('.btn3').addEventListener('click',function(){
+            sessionStorage.removeItem('username')
+        })
+
+        //清空
+        document.querySelector('.btn4').addEventListener('click',function(){
+            sessionStorage.clear()
+        })
+
+        //测试
+        document.querySelector('.btn5').addEventListener('click',function(){
+            //open('http://www.baidu.com')
+
+            //需要保证ip和端口一致才能共享数据
+            open('http://127.0.0.1:5500/xxx')
+        })
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>clock</title>
+    <style>
+        .box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 350px;
+            height: 380px;
+            background: rgb(205, 205, 205);
+            margin: 0 auto;
+            border-radius: 10px;
+        }
+
+        .clock {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: #fff url('./img/ios_clock.svg') no-repeat center;
+            background-size: 88%;
+            border-radius: 50%;
+        }
+
+        /* 中间黑点 */
+        .clock::after {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+
+            content: '';
+            width: 15px;
+            height: 15px;
+            background: #000;
+            border-radius: 50%;
+
+            /* 向左上移动自身的50% */
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        /* 时针 */
+        .hours {
+            position: absolute;
+            top: 30%;
+            left: 48.5%;
+
+            width: 3%;
+            height: 20%;
+            background: #000;
+            /* 沿底部旋转 */
+            transform-origin: 50% 100%;
+
+        }
+
+        /* 分针 */
+        .minutes {
+            position: absolute;
+            top: 13%;
+            left: 49%;
+
+            width: 2%;
+            height: 37%;
+            background: #000;
+            /* 沿底部旋转 */
+            transform-origin: 50% 100%;
+
+        }
+
+        /* 秒针 */
+        .seconds {
+            position: absolute;
+            top: 16.5%;
+            left: 49.5%;
+
+            width: 1%;
+            height: 40%;
+            background: #f00;
+            /* 沿底部旋转 */
+            transform-origin: 50% 84%;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="clock">
+            <div class="hours"></div>
+            <div class="minutes"></div>
+            <div class="seconds"></div>
+        </div>
+    </div>
+
+    <script>
+        /*
+            步骤
+                定义一个方法
+                    1.获取要旋转的元素(时针分针秒针)
+                    2,获取当前时间
+                    3,计算旋转的角度
+                    4,使用DOM设置要旋转元素的旋转角度
+
+                定义一个定时器,一秒钟执行一下这个方法
+        */
+       function clockRun(){
+            //1.获取要旋转的元素(时针分针秒针)
+            var hours = document.querySelector('.hours')
+            var minutes = document.querySelector('.minutes')
+            var seconds = document.querySelector('.seconds')
+
+            //2,获取当前时间
+            var date = new Date()
+            var h = date.getHours()
+            var m = date.getMinutes()
+            var s = date.getSeconds()
+
+            //3,计算旋转的角度
+            /* 秒针要旋转的角度:一圈是60秒,对应的是360度 */
+            var secondDeg = (s/60) * 360
+            /* 分针要旋转的角度:一圈是60分,对应的是360度,还要考虑秒针的影响(如果走了30秒,相当于半分钟),秒针走一圈分针只需要走6度的 */
+            var minuteDeg = (m/60) * 360 + (s/60) * 6
+            /* 时针要旋转的角度:一圈是12小时,对应的是360度,还要考虑分针的影响(如果走了30分,相当于半小时),分针走一圈时针只需要走30度的 */
+            var hourDeg = (h/12) * 360 + (m/60) * 30
+
+            //4,使用DOM设置要旋转元素的旋转角度
+            seconds.style.transform = `rotate(${secondDeg}deg)`
+            minutes.style.transform = `rotate(${minuteDeg}deg)`
+            hours.style.transform = `rotate(${hourDeg}deg)`
+       }
+
+       //页面加载完成之后调用一下方法
+       window.addEventListener('load',clockRun)
+    
+       setInterval(clockRun,1000)
+    </script>
+</body>
+
+</html>

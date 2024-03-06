@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //明星类
+        function Star(name,age){
+            this.name = name
+            this.age = age
+
+            this.sing = function(){
+                console.log('会唱歌')
+            }
+        }
+
+        //添加静态成员(国籍)
+        Star.country = '中国'
+
+        //创建两个明星对象(类的实例)
+        var ldh =  new Star('刘德华',60)
+        //访问实例成员--只能通过实例化对象访问
+        console.log(ldh.name)
+        ldh.sing()
+
+        //访问静态成员--静态成员只能通过构造函数访问
+        console.log(ldh.country)
+        console.log(Star.country)
+    </script>
+</body>
+</html>

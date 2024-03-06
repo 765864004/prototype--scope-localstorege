@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //明星类
+        function Star(name,age){
+            this.name = name
+            this.age = age
+
+            this.sing = function(){
+                console.log('会唱歌')
+            }
+        }
+
+
+        //创建两个明星对象
+        var ldh =  new Star('刘德华',60)
+        console.log(ldh.name)
+        ldh.sing()
+
+        var zxy =  new Star('张学友',60)
+        console.log(zxy.name)
+        zxy.sing()
+
+        /* 
+            new 做了3件事
+                1,在堆区中开辟了一块空间
+                2,给空间中的属性和方法赋值(给方法赋值的时候,需要开辟一块空间,存储方法对应的匿名函数)
+                3,返回空间的首地址给对象名
+
+            存在的问题
+                每一次创建对象的时候,都会为对象的方法,开辟一块空间,造成内存的浪费
+        */
+       console.log(ldh.sing === zxy.sing) //false 说明是在不同的地址,不再同一个空间,就造成内存的浪费
+
+    </script>
+</body>
+</html>
